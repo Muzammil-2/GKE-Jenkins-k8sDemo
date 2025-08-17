@@ -16,6 +16,8 @@ stage ('CheckoutCodes') {
     steps{
 git credentialsId: 'Github_Id', url: 'https://github.com/Muzammil-2/GKE-Jenkins-k8sDemo'
 }
+}
+/*
 stage ('Docker_Image') {
     steps{
      script{
@@ -40,4 +42,4 @@ stage ('DockerImage_Push') {
 
 
 
-}
+*/
