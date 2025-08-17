@@ -21,8 +21,8 @@ git credentialsId: 'Github_Id', url: 'https://github.com/Muzammil-2/GKE-Jenkins-
 stage ('Code_Analysis') {
     steps{
 withSonarQubeEnv('sonar') {
-    sh ''' mvn clean sonar:sonar -Dsonar.projectName=GKE-Project \
-                            -Dsonar.projectKey=GKE-Project '''
+    sh ''' $SCANNER_HOME/bin/sonar-tool -Dsonar.projectName=GKE-Project \
+                            -Dsonar.projectKey=GKE-Project -Dsonar.java.binaries=.'''
 }
 }
 }
