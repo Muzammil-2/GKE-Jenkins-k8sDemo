@@ -7,6 +7,7 @@ environment {
    App = 'Java25'
    tag = 'BUILD_NUMBER'
    BUILD_NUMBER = 'buildNumber'
+   SCANNER_HOME = tool 'sonar'
 }
 stages{
 stage ('CheckoutCodes') {
@@ -14,6 +15,24 @@ stage ('CheckoutCodes') {
 git credentialsId: 'Github_Id', url: 'https://github.com/Muzammil-2/GKE-Jenkins-k8sDemo'
 }
 }
+stage ('Code_Analysis') {
+    steps{
+withSonarQubeEnv(credentialsId: 'sonarid') {
+    sh ''' $SCANNER_HOME/bin/sonar -Dsonar.projectName=GKE-Project \
+                            -Dsonar.projectKey=GKE-Project '''
+}
+}
+}
+stage ('Code_Quality') {
+    steps{
+     timeout(time: 1, unit: 'HOURS') {
+    waitForQualityGate abortPipeline: false, credentialsId: 'sonarid'
+}
+}
+}
+
+
+
 
 }
 }
