@@ -17,7 +17,7 @@ git credentialsId: 'Github_Id', url: 'https://github.com/Muzammil-2/GKE-Jenkins-
 }
 stage ('Code_Analysis') {
     steps{
-withSonarQubeEnv(credentialsId:'sonarid') {
+withSonarQubeEnv(credentialsId:'sonarID') {
     sh ''' $SCANNER_HOME/bin/sonar -Dsonar.projectName=GKE-Project \
                             -Dsonar.projectKey=GKE-Project '''
 }
@@ -26,7 +26,7 @@ withSonarQubeEnv(credentialsId:'sonarid') {
 stage ('Code_Quality') {
     steps{
      timeout(time: 1, unit: 'HOURS') {
-    waitForQualityGate abortPipeline: false, credentialsId: 'sonarid'
+    waitForQualityGate abortPipeline: false, credentialsId: 'sonarID'
 }
 }
 }
