@@ -7,7 +7,7 @@ environment {
    App = 'Java25'
    tag = 'BUILD_NUMBER'
    BUILD_NUMBER = 'buildNumber'
-   SCANNER_HOME = tool 'sonar'
+   SCANNER_HOME = tool 'sonar-tool'
 }
 tools {
   maven 'maven'
