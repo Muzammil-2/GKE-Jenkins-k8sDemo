@@ -8,9 +8,6 @@ environment {
    tag = 'BUILD_NUMBER'
    BUILD_NUMBER = 'buildNumber'
 }
-tools {
-
-}
 stages{
 stage ('CheckoutCodes') {
     steps{
